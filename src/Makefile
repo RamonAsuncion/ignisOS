@@ -44,7 +44,7 @@ $(OBJ)/boot/%.o: $(BOOT)/%.asm
 	@mkdir -p $(dir $@)
 	$(ASM) -f elf64 $< -o $@
 
-$(KERNEL_ELF): $(OBJ)/boot/entry.o $(OBJ_FILES)
+$(KERNEL_ELF): $(OBJ)/boot/entry.o $(OBJ_FILES) # $(OBJ)/boot/entry.o $(OBJ)/kernel/entry.o
 	$(LD) -o $@ $^ -T $(SRC)/link.ld -Map=$(BUILD)/kernel.map
 
 $(KERNEL_BIN): $(KERNEL_ELF)
